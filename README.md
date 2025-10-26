@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Knight Studio – Procedural Artifact Lab
 
-## Getting Started
+A Three.js-powered scene editor inspired by Blender and Unity. Describe an artifact with text or drop in a reference image to synthesize a primitive blueprint, then drag that blueprint into the stage and iterate on its transform with familiar translate/scale handles.
 
-First, run the development server:
+Built with **Next.js App Router**, **React Three Fiber**, **drei**, **Zustand**, and **shadcn/ui**.
+
+## Features
+
+- Text prompt and image-based artifact generation with palette heuristics.
+- Drag-and-drop asset library that feeds directly into the viewport.
+- One-click spawning of bundled GLB presets from `/public/artifacts`.
+- Orbit, translate, and scale controls with grounded placement and contact shadows.
+- Unity-style inspector with axis sliders, mode toggles, and reset controls.
+- Blender-inspired dark UI built from shadcn/ui components.
+
+## Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Workflow
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Generate blueprints**  
+   - Use the **Text prompt** tab to describe an artifact (“matte black torus portal”).  
+   - Or upload a **Reference image**; the filename seeds the primitive + color.
 
-## Learn More
+2. **Populate the scene**  
+   - Click any preset GLB entry to load it instantly from `/public/artifacts`.  
+   - Drag any blueprint card into the viewport to spawn it where you drop.  
+   - Double-click a blueprint to spawn it at the origin; the library tracks in-scene counts.
 
-To learn more about Next.js, take a look at the following resources:
+3. **Manipulate artifacts**  
+   - Click an artifact to focus it, then switch between **Translate** and **Scale** modes in the inspector.  
+   - Position sliders (X/Z) and scale sliders (X/Y/Z) offer precise adjustments while keeping assets grounded.  
+   - Use **Reset transform** or **Remove from scene** to quickly iterate.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js 15 (App Router, TypeScript, Tailwind CSS v4)
+- React Three Fiber / drei / Three.js
+- Zustand state management
+- shadcn/ui component system
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` – start the development server.
+- `npm run build` – create an optimized production build.
+- `npm run start` – run the production server.
+- `npm run lint` – lint the project.
