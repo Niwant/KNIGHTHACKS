@@ -123,7 +123,36 @@ ufw reload
 # Or use Vultr's firewall in the dashboard
 ```
 
-### Using a Reverse Proxy (Nginx)
+### Using Nginx Reverse Proxy (Docker)
+
+The application now includes an nginx reverse proxy in Docker Compose. This is the recommended setup:
+
+```bash
+# Start both services (nginx + Next.js)
+docker-compose up -d
+
+# Check status
+docker-compose ps
+
+# View logs
+docker-compose logs -f nginx
+docker-compose logs -f knight-hacks
+```
+
+**Access:**
+- With nginx: `http://YOUR_SERVER_IP` (port 80)
+- Direct to Next.js: `http://YOUR_SERVER_IP:3000` (if you expose it)
+
+The nginx configuration includes:
+- Reverse proxy to Next.js app
+- Gzip compression
+- Static file caching
+- Security headers
+- Health check endpoint at `/health`
+
+### Alternative: Using System Nginx
+
+If you prefer to use system nginx instead of Docker:
 
 Install Nginx:
 ```bash

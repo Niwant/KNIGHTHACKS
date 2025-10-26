@@ -37,6 +37,9 @@ Dockerfile
 docker-compose.yml
 scripts
 
+# Nginx (will be included in Docker build)
+# nginx.conf and Dockerfile.nginx should be included
+
 # Unused/old directories
 src copy
 
