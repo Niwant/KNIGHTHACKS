@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   keywords: ["3D scenes", "AI animation", "procedural generation", "character animation", "3D modeling"],
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
