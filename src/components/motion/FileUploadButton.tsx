@@ -24,7 +24,12 @@ export default function FileUploadButton({ onFileReceived }: FileUploadProps) {
       const formData = new FormData();
       formData.append("wav", file);
   
-      const response = await axios.post("https://audio-motion.ngrok.app/generate-motion/", formData);
+      const response = await axios.post("https://audio-motion.ngrok.app/generate-motion/", formData ,{
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        }
+      });
       const { bvh_url } = response.data;
       const localAudioURL = URL.createObjectURL(file); // 🎯 create a local reference to uploaded file
       localStorage.setItem("audio", localAudioURL);

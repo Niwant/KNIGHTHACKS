@@ -1,0 +1,48 @@
+# Dependencies
+node_modules
+
+# Next.js build outputs
+.next
+out
+
+# Development
+*.log
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+*.md
+DEPLOYMENT.md
+QUICK_DEPLOY.md
+DOCKER_SETUP_SUMMARY.md
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+scripts
+
+# Unused/old directories
+src copy
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint
+.eslintcache
+

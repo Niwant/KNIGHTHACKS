@@ -51,3 +51,35 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - `npm run build` – create an optimized production build.
 - `npm run start` – run the production server.
 - `npm run lint` – lint the project.
+
+## Docker Deployment
+
+This application can be deployed to Vultr Cloud (or any Docker-compatible platform) using Docker.
+
+### Quick Deploy
+
+```bash
+# Build Docker image
+./scripts/build-docker.sh
+
+# Run locally to test
+docker run -p 3000:3000 knight-hacks:latest
+
+# Deploy to Vultr (set VULTR_SERVER_IP environment variable)
+./scripts/deploy-vultr.sh
+```
+
+### Docker Compose
+
+```bash
+# Build and start
+docker-compose up -d --build
+
+# View logs
+docker-compose logs -f
+
+# Stop
+docker-compose down
+```
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.

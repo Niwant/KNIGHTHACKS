@@ -1,8 +1,5 @@
 "use client";
 import * as THREE from "three";
-import path from 'path';
-import { writeFile,readFile } from 'fs';
-import fs from 'fs';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import axios from 'axios';
 
@@ -11,7 +8,7 @@ import axios from 'axios';
 //     const fileContent = fs.readFileSync(fullPath);
 //     return JSON.parse(fileContent);
 //   };
-  const loadJSON = async (relativePath) => {
+  const loadJSON = async (relativePath: string) => {
     // const fullPath = path.join(process.cwd(), 'public', relativePath);
     const res = await fetch(relativePath);
     return await res.json();
@@ -134,7 +131,7 @@ const BONE_NAMES = [
     53    // 54 - right_thumb3
 ];
 
-const calculateRelativePositions = (joints, parents) => {
+const calculateRelativePositions = (joints: number[][], parents: number[]) => {
     return joints.map((joint, index) => {
         const parentIndex = parents[index];
         if (parentIndex === -1) {
@@ -150,15 +147,14 @@ const calculateRelativePositions = (joints, parents) => {
     });
 };
 
-const createBones = (joints, parents) => {
-    const bones = [];
+const createBones = (joints: number[][], parents: number[]) => {
+    const bones: THREE.Bone[] = [];
     const relativePositions = calculateRelativePositions(joints, parents);
 
     relativePositions.forEach((pos, index) => {
         const bone = new THREE.Bone();
         bone.position.copy(pos);
         bone.name = BONE_NAMES[index];
-        bone.isBone = true; // Explicitly set isBone
         bones.push(bone);
     });
 
@@ -205,11 +201,11 @@ console.log("reached?")
 
   console.log("reaced2?")
    // console.log(JSON.stringify(texture, null, 2));
-   const material = new THREE.MeshStandardMaterial({
-   map: texture,
-   // color: 'blue',
-   metalness: 0,
-   roughness: 1
+    const material = new THREE.MeshStandardMaterial({
+    map: texture as THREE.Texture | null,
+    // color: 'blue',
+    metalness: 0,
+    roughness: 1
 });
 
 
@@ -236,7 +232,7 @@ console.log("reached?")
 //    const skeletonHelper = new THREE.SkeletonHelper(mesh);
    
 };
-const uploadGLB = async (glbBuffer) => {
+const uploadGLB = async (glbBuffer: ArrayBuffer) => {
     try {
       const response = await axios.post("/api/upload", glbBuffer, {
         headers: {
@@ -249,7 +245,7 @@ const uploadGLB = async (glbBuffer) => {
       console.error("Upload failed:", error);
     }
   };
-const exportToGLB = async (object) => {
+const exportToGLB = async (object: THREE.Object3D) => {
     const exporter = new GLTFExporter();
 
     try {
@@ -282,7 +278,7 @@ const exportToGLB = async (object) => {
         console.error('An error occurred during GLB export:', error);
     }
 };
-const loadTextureAsync = (url) => {
+const loadTextureAsync = (url: string) => {
     return new Promise((resolve, reject) => {
         const loader = new THREE.TextureLoader();
         console.log("loading texture")

@@ -70,6 +70,7 @@ const CanvasComponent = ({
 
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+  const controlsRef = useRef<OrbitControls | null>(null);
 
   const exportSelectedToGLB = useCallback(async () => {
     const models = modelsRef.current;
@@ -234,6 +235,8 @@ const CanvasComponent = ({
       1,
       2000
     );
+    // Set initial camera position - zoomed out
+    camera.position.set(25, 20, 25);
     cameraRef.current = camera;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -252,6 +255,7 @@ const CanvasComponent = ({
     container.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
+    controlsRef.current = controls;
     controls.minDistance = 0;
     controls.maxDistance = 1200;
     controls.minPolarAngle = 0;
@@ -310,9 +314,9 @@ const CanvasComponent = ({
           targetModel.scene.position.x -= size.x * 0.5;
 
           const modelHeight = size.y;
-          const distance = modelHeight * 2.2;
-          camera.position.set(center.x - modelHeight * 0.5, modelHeight * 1.1, center.z + distance);
-          controls.target.set(center.x, modelHeight * 0.55, center.z);
+          const distance = modelHeight * 5.2;
+          camera.position.set(center.x - modelHeight * 0.5, modelHeight * 3.1, center.z + distance);
+          controls.target.set(center.x, modelHeight * 2.55, center.z);
           controls.update();
 
           targetModels.push(targetModel);
@@ -487,6 +491,44 @@ const CanvasComponent = ({
           mixersRef.current = mixers;
           if (retargetResults.length > 0) {
             setDuration(retargetResults[0].clip.duration);
+            
+            // Zoom out camera after retargeting
+            if (cameraRef.current && controlsRef.current) {
+              const camera = cameraRef.current;
+              const controls = controlsRef.current;
+              
+              // Calculate current distance from target
+              const distance = camera.position.length();
+              const newDistance = Math.max(distance * 1.5, 20); // Zoom out by 1.5x, minimum 10 units
+              
+              // Animate camera zoom out
+              const startDistance = distance;
+              const endDistance = newDistance;
+              const duration = 500; // 500ms animation
+              const startTime = performance.now();
+              camera.position.normalize().multiplyScalar(newDistance);
+              controls.update();
+              
+              // const animateZoom = (currentTime: number) => {
+              //   const elapsed = currentTime - startTime;
+              //   const progress = Math.min(elapsed / duration, 1);
+                
+              //   // Ease out cubic
+              //   const eased = 1 - Math.pow(1 - progress, 3);
+                
+              //   const currentDistance = startDistance + (endDistance - startDistance) * eased;
+                
+              //   // Update camera position to maintain current direction
+              //   camera.position.normalize().multiplyScalar(currentDistance);
+              //   controls.update();
+                
+              //   // if (progress < 1) {
+              //   //   requestAnimationFrame(animateZoom);
+              //   // }
+              // };
+              
+              // requestAnimationFrame(animateZoom);
+            }
           } else {
             setDuration(0);
           }

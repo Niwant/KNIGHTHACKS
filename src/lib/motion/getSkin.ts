@@ -16,7 +16,7 @@ export function findPrimaryMixamoRig(root: THREE.Object3D): MixamoRigInfo | null
   let armatureRoot: THREE.Group | null = null;
 
   root.traverse((obj) => {
-    if (obj instanceof THREE.SkinnedMesh && obj.skeleton && !skinnedMesh) {
+    if (obj instanceof THREE.SkinnedMesh && !skinnedMesh) {
       skinnedMesh = obj;
     }
     if (obj.type === "Group" && obj.name.toLowerCase().includes("armature") && !armatureRoot) {
@@ -24,13 +24,20 @@ export function findPrimaryMixamoRig(root: THREE.Object3D): MixamoRigInfo | null
     }
   });
 
-  if (!skinnedMesh || !skinnedMesh.skeleton) {
+  if (!skinnedMesh) {
     console.warn("No SkinnedMesh with skeleton found");
     return null;
   }
 
+  // Type assertion to access skeleton property
+  const skeleton = (skinnedMesh as THREE.SkinnedMesh).skeleton;
+  if (!skeleton) {
+    console.warn("No skeleton found on SkinnedMesh");
+    return null;
+  }
+
   // Find the Hips bone (root of Mixamo/SMPL skeleton)
-  const hips = skinnedMesh.skeleton.bones.find(
+  const hips = skeleton.bones.find(
     (bone) =>
       bone.name === "Hips" ||
       bone.name === "mixamorigHips" ||
@@ -43,7 +50,7 @@ export function findPrimaryMixamoRig(root: THREE.Object3D): MixamoRigInfo | null
 
   return {
     mesh: skinnedMesh,
-    skeleton: skinnedMesh.skeleton,
+    skeleton: skeleton,
     hips: hips || null,
     armatureRoot,
   };
