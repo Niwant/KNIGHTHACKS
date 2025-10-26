@@ -59,20 +59,27 @@ export const EditorShell = ({
 
       <aside
         className={cn(
-          "fixed left-0 top-0 z-30 flex h-full w-full max-w-[420px] translate-x-0 flex-col border-r border-zinc-800/80 bg-zinc-950/95 shadow-2xl backdrop-blur-sm transition-transform duration-300 ease-in-out",
+          "fixed left-0 top-0 z-30 flex h-full w-full max-w-[440px] translate-x-0 flex-col border-r border-zinc-800/80 bg-zinc-950/95 backdrop-blur-xl shadow-2xl transition-transform duration-300 ease-in-out",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="flex items-center justify-between border-b border-zinc-800/80 px-5 py-5">
+        <div className="flex items-center justify-between border-b border-zinc-800/80 bg-gradient-to-r from-zinc-950 via-zinc-950 to-zinc-900/50 px-6 py-6">
           <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.55em] text-blue-400">
-              Knight Studio
-            </p>
-            <h1 className="mt-2 text-lg font-semibold text-zinc-100">
-              Procedural Artifact Lab
-            </h1>
-            <p className="mt-2 text-[0.6rem] uppercase tracking-[0.35em] text-zinc-500">
-              Blender workflow · Unity inspector
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 via-purple-600 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                <span className="text-white font-bold text-lg">S</span>
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.6em] text-blue-400">
+                  Scenergy
+                </p>
+                <h1 className="mt-1 text-lg font-extrabold text-zinc-100">
+                  Scene Maker
+                </h1>
+              </div>
+            </div>
+            <p className="mt-2 text-xs font-medium text-zinc-400">
+              AI-Powered 3D Scene Creation Tool
             </p>
           </div>
           
@@ -81,7 +88,7 @@ export const EditorShell = ({
             <Button
               variant="outline"
               size="icon"
-              className="h-8 w-8 border-zinc-700 bg-zinc-900 text-zinc-200 hover:bg-zinc-800"
+              className="h-9 w-9 border-zinc-700 bg-zinc-900 text-zinc-200 hover:bg-zinc-800 hover:border-zinc-600 transition-all"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Menu"
             >
@@ -94,17 +101,17 @@ export const EditorShell = ({
                   className="fixed inset-0 z-40" 
                   onClick={() => setIsMenuOpen(false)}
                 />
-                <div className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-lg border border-zinc-800/70 bg-zinc-900 shadow-xl">
-                  <div className="p-1">
+                <div className="absolute right-0 top-full z-50 mt-2 w-60 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-2xl">
+                  <div className="p-1.5 bg-gradient-to-b from-zinc-900 to-zinc-950">
                     <Link href="/">
                       <button
                         onClick={() => setIsMenuOpen(false)}
-                        className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+                        className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-300 transition-all hover:bg-zinc-800 hover:text-white group"
                       >
-                        <Home className="h-4 w-4" />
+                        <Home className="h-5 w-5 text-blue-400 group-hover:text-blue-300" />
                         <div>
-                          <div className="font-medium">Home</div>
-                          <div className="text-xs text-zinc-500">Back to landing</div>
+                          <div className="font-semibold text-zinc-100">Home</div>
+                          <div className="text-xs text-zinc-500">Back to landing page</div>
                         </div>
                       </button>
                     </Link>
@@ -112,28 +119,28 @@ export const EditorShell = ({
                     <Link href="/motion-generator">
                       <button
                         onClick={() => setIsMenuOpen(false)}
-                        className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+                        className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-300 transition-all hover:bg-zinc-800 hover:text-white group"
                       >
-                        <Clapperboard className="h-4 w-4" />
+                        <Clapperboard className="h-5 w-5 text-purple-400 group-hover:text-purple-300" />
                         <div>
-                          <div className="font-medium">Motion Generator</div>
-                          <div className="text-xs text-zinc-500">AI animations</div>
+                          <div className="font-semibold text-zinc-100">Motion Generator</div>
+                          <div className="text-xs text-zinc-500">AI-powered animations</div>
                         </div>
                       </button>
                     </Link>
                     
-                    <div className="my-1 h-px bg-zinc-800" />
+                    <div className="my-2 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
                     
                     <button
                       onClick={() => {
                         setIsMenuOpen(false);
                         setIsSidebarOpen(false);
                       }}
-                      className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+                      className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-300 transition-all hover:bg-zinc-800 hover:text-white group"
                     >
-                      <span className="text-lg">«</span>
+                      <span className="text-xl font-bold">«</span>
                       <div>
-                        <div className="font-medium">Collapse Panel</div>
+                        <div className="font-semibold text-zinc-100">Collapse Panel</div>
                         <div className="text-xs text-zinc-500">Hide sidebar</div>
                       </div>
                     </button>
@@ -145,22 +152,22 @@ export const EditorShell = ({
         </div>
         <div className="flex-1 overflow-hidden">
           <Tabs defaultValue="artifacts" className="flex h-full flex-col">
-            <TabsList className="mx-6 mt-4 grid w-auto grid-cols-3 bg-zinc-800/70">
+            <TabsList className="mx-6 mt-5 grid w-auto grid-cols-3 gap-1 bg-zinc-900 p-1 rounded-lg">
               <TabsTrigger
                 value="artifacts"
-                className="data-[state=active]:bg-blue-600 data-[state=active]:text-blue-50"
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-700 data-[state=active]:text-white font-semibold text-zinc-400 transition-all hover:text-zinc-300 rounded-md"
               >
                 Artifacts
               </TabsTrigger>
               <TabsTrigger
                 value="scene"
-                className="data-[state=active]:bg-purple-600 data-[state=active]:text-purple-50"
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600 data-[state=active]:to-purple-700 data-[state=active]:text-white font-semibold text-zinc-400 transition-all hover:text-zinc-300 rounded-md"
               >
                 Scene
               </TabsTrigger>
               <TabsTrigger
                 value="inspector"
-                className="data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-50"
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-600 data-[state=active]:to-indigo-700 data-[state=active]:text-white font-semibold text-zinc-400 transition-all hover:text-zinc-300 rounded-md"
               >
                 Inspector
               </TabsTrigger>
@@ -183,7 +190,7 @@ export const EditorShell = ({
         variant="outline"
         size="sm"
         className={cn(
-          "fixed left-4 top-4 z-10 border-blue-500/40 bg-zinc-900/80 text-xs font-semibold uppercase tracking-[0.35em] text-blue-200 shadow-lg transition-opacity",
+          "fixed left-4 top-4 z-10 border-2 border-blue-500/50 bg-zinc-900/90 backdrop-blur-xl text-xs font-bold uppercase tracking-[0.35em] text-blue-400 shadow-xl transition-all hover:bg-blue-500/10 hover:border-blue-500 hover:shadow-blue-500/20",
           isSidebarOpen ? "pointer-events-none opacity-0" : "opacity-100"
         )}
         onClick={() => setIsSidebarOpen(true)}

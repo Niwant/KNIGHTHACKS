@@ -1,4 +1,4 @@
-## Knight Studio – Procedural Artifact Lab
+## Scenergy – AI-Powered 3D Scene Creation
 
 A Three.js-powered scene editor inspired by Blender and Unity. Describe an artifact with text or drop in a reference image to synthesize a primitive blueprint, then drag that blueprint into the stage and iterate on its transform with familiar translate/scale handles.
 

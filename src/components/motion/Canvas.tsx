@@ -45,6 +45,7 @@ const CanvasComponent = ({
   const trimRangeRef = useRef<[number, number]>([0, 0]);
   useEffect(() => { trimRangeRef.current = trimRange; }, [trimRange]);
   const [loadingCharacters, setLoadingCharacters] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const isPlayingRef = useRef(isPlaying);
 
@@ -773,6 +774,8 @@ const CanvasComponent = ({
         onTogglePlay={handlePlayPause}
         onSeek={handleSeek}
         hasAnimation={animationClipsRef.current.length > 0}
+        isGenerating={isGenerating}
+        onGenerateStateChange={setIsGenerating}
       />
     </div>
   );

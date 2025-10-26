@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Chatbot from "@/components/motion/Chatbot";
 import TimelinePanel from "@/components/workspace/TimelinePanel";
 import { ChevronDown, Check, Edit3, X } from "lucide-react";
+import { Loader3D } from "./Loader3D";
 
 interface CanvasOverlaysProps {
   loadingCharacters: boolean;
@@ -15,6 +16,8 @@ interface CanvasOverlaysProps {
   onTogglePlay?: () => void;
   onSeek?: (time: number) => void;
   hasAnimation?: boolean;
+  isGenerating?: boolean;
+  onGenerateStateChange?: (isGenerating: boolean) => void;
 }
 
 type AIModel = {
@@ -55,6 +58,8 @@ export function CanvasOverlays({
   onTogglePlay,
   onSeek,
   hasAnimation = false,
+  isGenerating = false,
+  onGenerateStateChange,
 }: CanvasOverlaysProps) {
   const [selectedModel, setSelectedModel] = useState<AIModel>(AI_MODELS[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -69,6 +74,28 @@ export function CanvasOverlays({
 
   return (
     <>
+      {/* Loading Overlay - Covers the canvas */}
+      {isGenerating && (
+        <div className="absolute inset-0 z-40 bg-black/70 backdrop-blur-md flex items-center justify-center">
+          <div className="flex flex-col items-center gap-6">
+            <Loader3D />
+            <div className="text-center">
+              <p className="text-lg font-semibold text-zinc-200">
+                Generating Animation...
+              </p>
+              <p className="text-sm text-zinc-400 mt-2">
+                This may take a few seconds
+              </p>
+              <div className="mt-4 flex items-center justify-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* Edit Button - Shows when chatbox is collapsed */}
       {isChatboxCollapsed && (
         <div className="absolute left-1/2 top-6 z-50 -translate-x-1/2 transform">
@@ -85,7 +112,7 @@ export function CanvasOverlays({
       {/* Centered Top Chatbox */}
       {!isChatboxCollapsed && (
         <div className="absolute left-1/2 top-6 z-50 w-full max-w-2xl -translate-x-1/2 transform px-4">
-        <div className="overflow-hidden rounded-xl border border-zinc-800/80 bg-zinc-950/95 shadow-2xl backdrop-blur-sm">
+        <div className="overflow-hidden rounded-xl border border-white/10 bg-zinc-950/40 shadow-2xl backdrop-blur-xl bg-gradient-to-br from-zinc-950/40 via-zinc-950/30 to-zinc-950/40">
           {/* Model Selector - Compact Header */}
           <div className="border-b border-zinc-800/60 px-3 py-2">
             <div className="flex items-center justify-between gap-2">
@@ -169,6 +196,8 @@ export function CanvasOverlays({
                 onSend={onSend}
                 onAvatarUpdate={onAvatarUpdate}
                 selectedModel={selectedModel.id}
+                isGenerating={isGenerating}
+                onGeneratingChange={onGenerateStateChange}
               />
             </div>
           )}

@@ -15,8 +15,8 @@ import type { Group } from "three";
 import { selectors, useEditorStore } from "@/store/editor-store";
 import { ArtifactBlueprint, PlacedArtifact } from "@/store/editor-store";
 
-const backgroundColor = "#2a2a2a";
-const floorColor = "#1a1a1a";
+const backgroundColor = "#1a1a1a";
+const floorColor = "#0a0a0a";
 
 type ArtifactInstanceProps = {
   blueprint: ArtifactBlueprint;
@@ -231,7 +231,7 @@ export const EditorCanvas = () => {
   const selectPlacement = useEditorStore((state) => state.selectPlacement);
 
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950">
+    <div className="relative h-full w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
       <Canvas
         shadows
         camera={{ position: [5, 4, 6], fov: 45, near: 0.1, far: 2000 }}
@@ -333,12 +333,12 @@ export const EditorCanvas = () => {
           );
         })}
       </Canvas>
-      <div className="pointer-events-none absolute left-4 top-4 flex flex-col gap-2 text-xs font-medium uppercase tracking-[0.2em] text-zinc-300">
-        <span>Drag blueprints into the workspace</span>
-        <span>Click to select · Right click + drag to orbit</span>
+      <div className="pointer-events-none absolute left-4 top-4 flex flex-col gap-2 text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">
+        <span className="drop-shadow-lg">Drag blueprints into the workspace</span>
+        <span className="drop-shadow-lg">Click to select · Right click + drag to orbit</span>
       </div>
       {selectedId && (
-        <div className="pointer-events-none absolute bottom-4 left-4 rounded-md border border-blue-500/30 bg-blue-500/10 px-3 py-1.5 text-xs font-medium text-blue-200">
+        <div className="pointer-events-none absolute bottom-4 left-4 rounded-lg border border-blue-500/30 bg-blue-500/10 backdrop-blur-xl px-4 py-2.5 text-xs font-semibold text-blue-200 shadow-xl">
           Use the Properties Panel on the right to adjust position and scale →
         </div>
       )}

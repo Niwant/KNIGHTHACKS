@@ -115,20 +115,27 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
         {/* Left Sidebar */}
         <aside
           className={cn(
-            "fixed left-0 top-0 z-30 flex h-full w-full max-w-[420px] translate-x-0 flex-col border-r border-zinc-800/80 bg-zinc-950/95 shadow-2xl backdrop-blur-sm transition-transform duration-300 ease-in-out",
+            "fixed left-0 top-0 z-30 flex h-full w-full max-w-[420px] translate-x-0 flex-col border-r border-zinc-800/80 bg-zinc-950/95 shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-in-out",
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           )}
         >
           {/* Sidebar Header */}
-          <div className="flex items-center justify-between border-b border-zinc-800/80 px-5 py-5">
+          <div className="flex items-center justify-between border-b border-zinc-800/80 bg-gradient-to-r from-zinc-950 via-zinc-950 to-zinc-900/50 px-6 py-6">
             <div>
-              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.55em] text-green-400">
-                Knight Studio
-              </p>
-              <h1 className="mt-2 text-lg font-semibold text-zinc-100">
-                Motion Generator
-              </h1>
-              <p className="mt-2 text-[0.6rem] uppercase tracking-[0.35em] text-zinc-500">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-green-600 via-emerald-600 to-green-700 flex items-center justify-center shadow-lg shadow-green-500/30">
+                  <span className="text-white font-bold text-lg">M</span>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.6em] text-green-400">
+                    Scenergy
+                  </p>
+                  <h1 className="mt-1 text-lg font-extrabold text-zinc-100">
+                    Motion Generator
+                  </h1>
+                </div>
+              </div>
+              <p className="mt-2 text-xs font-medium text-zinc-400">
                 AI-Powered Animation Retargeting
               </p>
             </div>
@@ -138,7 +145,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
               <Button
                 variant="outline"
                 size="icon"
-                className="h-8 w-8 border-zinc-700 bg-zinc-900 text-zinc-200 hover:bg-zinc-800"
+                className="h-9 w-9 border-zinc-700 bg-zinc-900 text-zinc-200 hover:bg-zinc-800 hover:border-zinc-600 transition-all"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Menu"
               >
@@ -151,17 +158,17 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                     className="fixed inset-0 z-40" 
                     onClick={() => setIsMenuOpen(false)}
                   />
-                  <div className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-lg border border-zinc-800/70 bg-zinc-900 shadow-xl">
-                    <div className="p-1">
+                  <div className="absolute right-0 top-full z-50 mt-2 w-60 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-2xl">
+                    <div className="p-1.5 bg-gradient-to-b from-zinc-900 to-zinc-950">
                       <Link href="/">
                         <button
                           onClick={() => setIsMenuOpen(false)}
-                          className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+                          className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-300 transition-all hover:bg-zinc-800 hover:text-white group"
                         >
-                          <Home className="h-4 w-4" />
+                          <Home className="h-5 w-5 text-green-400 group-hover:text-green-300" />
                           <div>
-                            <div className="font-medium">Home</div>
-                            <div className="text-xs text-zinc-500">Back to landing</div>
+                            <div className="font-semibold text-zinc-100">Home</div>
+                            <div className="text-xs text-zinc-500">Back to landing page</div>
                           </div>
                         </button>
                       </Link>
@@ -169,28 +176,28 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                       <Link href="/scenemaker">
                         <button
                           onClick={() => setIsMenuOpen(false)}
-                          className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+                          className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-300 transition-all hover:bg-zinc-800 hover:text-white group"
                         >
-                          <Box className="h-4 w-4" />
+                          <Box className="h-5 w-5 text-blue-400 group-hover:text-blue-300" />
                           <div>
-                            <div className="font-medium">Scene Maker</div>
+                            <div className="font-semibold text-zinc-100">Scene Maker</div>
                             <div className="text-xs text-zinc-500">Create 3D scenes</div>
                           </div>
                         </button>
                       </Link>
                       
-                      <div className="my-1 h-px bg-zinc-800" />
+                      <div className="my-2 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
                       
                       <button
                         onClick={() => {
                           setIsMenuOpen(false);
                           setIsSidebarOpen(false);
                         }}
-                        className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-zinc-100"
+                        className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-300 transition-all hover:bg-zinc-800 hover:text-white group"
                       >
-                        <span className="text-lg">«</span>
+                        <span className="text-xl font-bold">«</span>
                         <div>
-                          <div className="font-medium">Collapse Panel</div>
+                          <div className="font-semibold text-zinc-100">Collapse Panel</div>
                           <div className="text-xs text-zinc-500">Hide sidebar</div>
                         </div>
                       </button>
@@ -204,22 +211,22 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
           {/* Tabs */}
           <div className="flex-1 overflow-hidden">
             <Tabs defaultValue="generate" className="flex h-full flex-col">
-              <TabsList className="mx-6 mt-4 grid w-auto grid-cols-3 bg-zinc-800/70">
+              <TabsList className="mx-6 mt-5 grid w-auto grid-cols-3 gap-1 bg-zinc-900 p-1 rounded-lg">
                 <TabsTrigger
                   value="generate"
-                  className="data-[state=active]:bg-green-600 data-[state=active]:text-green-50"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600 data-[state=active]:to-emerald-700 data-[state=active]:text-white font-semibold text-zinc-400 transition-all hover:text-zinc-300 rounded-md"
                 >
                   Generate
                 </TabsTrigger>
                 <TabsTrigger
                   value="characters"
-                  className="data-[state=active]:bg-blue-600 data-[state=active]:text-blue-50"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-blue-700 data-[state=active]:text-white font-semibold text-zinc-400 transition-all hover:text-zinc-300 rounded-md"
                 >
                   Characters
                 </TabsTrigger>
                 <TabsTrigger
                   value="controls"
-                  className="data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-50"
+                  className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-zinc-700 data-[state=active]:to-zinc-800 data-[state=active]:text-white font-semibold text-zinc-400 transition-all hover:text-zinc-300 rounded-md"
                 >
                   Controls
                 </TabsTrigger>
@@ -231,7 +238,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                 className="flex-1 overflow-y-auto px-6 py-6 space-y-6"
               >
                 {/* Instructions */}
-                <Card className="border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur">
+                <Card className="border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur hover:bg-zinc-900/60 transition-all">
                   <div>
                     <h3 className="text-sm font-semibold uppercase tracking-wider text-green-400 mb-3">
                       💡 How to use
@@ -258,19 +265,19 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                 </Card>
 
                 {/* Quick Stats */}
-                <Card className="border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur">
+                <Card className="border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur hover:bg-zinc-900/60 transition-all">
                   <div>
                     <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-3">
                       Session Info
                     </h3>
                     <div className="space-y-3 text-xs">
-                      <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-800/50">
+                      <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-800/50 border border-zinc-800/50 hover:border-green-500/30 transition-colors">
                         <span className="text-zinc-400">Selected Characters</span>
-                        <span className="text-lg font-semibold text-green-400">{selectedCharacters.length}</span>
+                        <span className="text-lg font-bold text-green-400">{selectedCharacters.length}</span>
                       </div>
-                      <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-800/50">
+                      <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-800/50 border border-zinc-800/50 hover:border-green-500/30 transition-colors">
                         <span className="text-zinc-400">Animation Status</span>
-                        <span className="text-zinc-300">{bvhFile ? 'Loaded' : 'None'}</span>
+                        <span className={bvhFile ? 'text-green-400 font-semibold' : 'text-zinc-500'}>{bvhFile ? 'Loaded' : 'None'}</span>
                       </div>
                     </div>
                   </div>
@@ -292,7 +299,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                 value="characters"
                 className="flex-1 overflow-y-auto px-6 py-6"
               >
-                <Card className="border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur">
+                <Card className="border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur hover:bg-zinc-900/60 transition-all">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div>
@@ -309,7 +316,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                           onClick={clearCharacters}
                           variant="ghost"
                           size="sm"
-                          className="text-xs text-red-400 hover:text-red-300"
+                          className="text-xs font-semibold text-red-400 hover:text-red-300 hover:bg-red-500/10"
                         >
                           Clear
                         </Button>
@@ -338,10 +345,10 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                                 key={characterPath}
                                 onClick={() => toggleCharacter(characterPath)}
                                 className={cn(
-                                  "relative flex flex-col items-center gap-2 rounded-lg border p-3 text-center transition overflow-hidden",
+                                  "relative flex flex-col items-center gap-2 rounded-lg border-2 p-3 text-center transition-all overflow-hidden group",
                                   isSelected
-                                    ? "border-green-500/60 bg-green-500/10 text-green-200"
-                                    : "border-zinc-800/70 bg-zinc-900/40 text-zinc-300 hover:border-green-500/40 hover:bg-green-500/5"
+                                    ? "border-green-500/60 bg-green-500/10 text-green-200 shadow-lg shadow-green-500/20"
+                                    : "border-zinc-800/70 bg-zinc-900/40 text-zinc-300 hover:border-green-500/40 hover:bg-green-500/5 hover:shadow-md hover:shadow-green-500/10 hover:scale-[1.02]"
                                 )}
                               >
                                 <div className="relative w-full aspect-square rounded-md overflow-hidden bg-zinc-800/60">
@@ -383,7 +390,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                 value="controls"
                 className="flex-1 overflow-y-auto px-6 py-6"
               >
-                <Card className="border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur">
+                <Card className="border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur hover:bg-zinc-900/60 transition-all">
                   <div className="space-y-4">
                     <div>
                       <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
@@ -399,7 +406,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                   </div>
                 </Card>
 
-                <Card className="mt-6 border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur">
+                <Card className="mt-6 border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur hover:bg-zinc-900/60 transition-all">
                   <div className="space-y-4">
                     <div>
                       <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
@@ -415,7 +422,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                   </div>
                 </Card>
 
-                <Card className="mt-6 border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur">
+                <Card className="mt-6 border-zinc-800/70 bg-zinc-900/50 p-6 backdrop-blur hover:bg-zinc-900/60 transition-all">
                   <div className="space-y-4">
                     <div>
                       <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400">
@@ -429,7 +436,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800"
+                        className="w-full border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800 transition-all"
                         disabled
                       >
                         Export as GLB
@@ -437,7 +444,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800"
+                        className="w-full border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800 transition-all"
                         disabled
                       >
                         Export BVH
@@ -458,7 +465,7 @@ export const MotionShell = ({ mixamoCharacters }: MotionShellProps) => {
           variant="outline"
           size="sm"
           className={cn(
-            "fixed left-4 top-4 z-10 border-green-500/40 bg-zinc-900/80 text-xs font-semibold uppercase tracking-[0.35em] text-green-200 shadow-lg transition-opacity",
+            "fixed left-4 top-4 z-10 border-2 border-green-500/50 bg-zinc-900/90 backdrop-blur-xl text-xs font-bold uppercase tracking-[0.35em] text-green-400 shadow-xl transition-all hover:bg-green-500/10 hover:border-green-500 hover:shadow-green-500/20",
             isSidebarOpen ? "pointer-events-none opacity-0" : "opacity-100"
           )}
           onClick={() => setIsSidebarOpen(true)}
